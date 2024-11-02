@@ -1,5 +1,3 @@
----
-
 # 🏋️ BMI Calculator
 
 ![Responsive Design](assets/images/responsive.png)
@@ -151,5 +149,5 @@ All content for the BMI categories and health advice was written by the develope
 - **Code Institute**: For providing the project brief and structure.
 - **Open Source Libraries**: Font Awesome for icons and Google Fonts for typography.
 
----
+
 
