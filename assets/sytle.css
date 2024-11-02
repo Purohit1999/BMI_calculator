@@ -67,6 +67,7 @@
     border-radius: 10px; /* Add rounded corners */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add subtle shadow for depth */
     text-align: center;
+    cursor: move; /* Indicates draggable */
 }
 
 /* Button styling */

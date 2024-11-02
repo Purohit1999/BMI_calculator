@@ -58,6 +58,8 @@ const zoomImageContainer = document.getElementById('zoomImageContainer');
 
 // Set video playback rate
 backgroundVideo.playbackRate = 0.5;
+backgroundMusic.loop = true;  // Enable looping
+backgroundMusic.play();        // Start playing music
 
 // When video ends, hide it and show image with zoom effect
 backgroundVideo.onended = function() {
