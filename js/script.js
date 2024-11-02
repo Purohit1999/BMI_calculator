@@ -53,9 +53,17 @@ function dragElement(element) {
 }
 
 // Play video slowly, then switch to image with zoom effect
-document.getElementById('backgroundVideo').playbackRate = 0.5;
+const backgroundVideo = document.getElementById('backgroundVideo');
+const zoomImageContainer = document.getElementById('zoomImageContainer');
 
-document.getElementById('backgroundVideo').onended = function() {
-    document.getElementById('backgroundVideo').style.display = 'none';
-    document.getElementById('zoomImageContainer').style.display = 'block';
+// Set video playback rate
+backgroundVideo.playbackRate = 0.5;
+
+// When video ends, hide it and show image with zoom effect
+backgroundVideo.onended = function() {
+    backgroundVideo.style.display = 'none';
+    zoomImageContainer.style.display = 'block';
+
+    // Apply zoom effect to image
+    zoomImageContainer.classList.add("zoom-effect");
 };

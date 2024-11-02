@@ -25,7 +25,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    animation: zoomInOut 5s infinite alternate;
+    animation: zoomInOut 10s infinite alternate; /* Smooth zoom effect */
 }
 
 @keyframes zoomInOut {
@@ -46,13 +46,18 @@
 }
 
 .form-wrapper {
-    background-color: rgba(255, 255, 255, 0.85); /* More transparent */
-    width: 350px; /* Increased size */
-    padding: 30px; /* Increased padding */
+    width: 300px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
     border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: move; /* Indicates that the form is draggable */
+    position: absolute; /* For flexibility in movement */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
 }
+
 /* Make form container larger and semi-transparent */
 #content-wrapper {
     background-color: rgba(255, 255, 255, 0.85); /* Adjust transparency */
@@ -61,6 +66,7 @@
     padding: 30px; /* Increase padding */
     border-radius: 10px; /* Add rounded corners */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add subtle shadow for depth */
+    text-align: center;
 }
 
 /* Button styling */
@@ -72,7 +78,26 @@ button {
     color: white;
     font-weight: bold;
     border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Add hover effect */
 }
+
+button#submitButton {
+    font-size: 1.1em;
+    padding: 12px 20px; /* Increase padding for button */
+    background-color: teal;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Add hover effect */
+}
+
+button#submitButton:hover {
+    background-color: darkcyan;
+}
+
 /* Adjust heading and paragraph font sizes */
 h3, h2 {
     font-size: 1.5em; /* Make headings larger */
@@ -92,21 +117,6 @@ input {
     border: 1px solid #ccc;
     border-radius: 5px;
 }
-/* Style the submit button with larger size */
-button#submitButton {
-    font-size: 1.1em;
-    padding: 12px 20px; /* Increase padding for button */
-    background-color: teal;
-    color: white;
-    font-weight: bold;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease; /* Add hover effect */
-}
-button#submitButton:hover {
-    background-color: darkcyan;
-}
 
 /* Adjust overlay text for better visibility */
 .overlay p {
@@ -114,9 +124,16 @@ button#submitButton:hover {
     font-weight: bold;
     color: white;
 }
+
 /* Result styling */
 #result {
     text-align: center;
     font-weight: bold;
     color: blue;
+}
+
+/* Additional styling for hover effect on buttons */
+button:hover {
+    background-color: #008080;
+    transition: 0.3s;
 }
