@@ -56,6 +56,8 @@
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    cursor: move; /* Indicates that the form is draggable */
 }
 
 /* Make form container larger and semi-transparent */
@@ -108,13 +110,13 @@ p, #result {
     font-size: 1.2em; /* Increase font size for advice and result */
 }
 
-/* Increase input field size */
-input {
-    height: 30px; /* Increase input field height */
-    width: 330px; /* Adjust width to match the form size */
-    font-size: 1.1em; /* Make input text bigger */
+/* Style for input fields and button */
+input[type="number"] {
+    height: 30px;
+    width: 100%;
+    font-size: 1em;
     padding: 5px;
-    margin-bottom: 15px; /* Add more space between fields */
+    margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }

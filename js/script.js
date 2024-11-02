@@ -52,12 +52,17 @@ function dragElement(element) {
     }
 }
 
-// Play video slowly, then switch to image with zoom effect
-const backgroundVideo = document.getElementById('backgroundVideo');
-const zoomImageContainer = document.getElementById('zoomImageContainer');
+/ Play video slowly, then switch to image with zoom effect
+document.getElementById('backgroundVideo').playbackRate = 0.5;
 
-// Set video playback rate
-backgroundVideo.playbackRate = 0.5;
+document.getElementById('backgroundVideo').onended = function() {
+    document.getElementById('backgroundVideo').style.display = 'none';
+    document.getElementById('zoomImageContainer').style.display = 'block';
+};
+
+// Background music setup
+const backgroundMusic = document.getElementById('backgroundMusic');
+backgroundMusic.volume = 0.5; // Set volume to medium
 backgroundMusic.loop = true;  // Enable looping
 backgroundMusic.play();        // Start playing music
 
