@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="assets/sytle.css" rel="stylesheet">
+    <title>Interactive Draggable Form with Background</title>
+</head>
+<body>
+    <!-- Background video -->
+    <video id="backgroundVideo" muted autoplay playsinline>
+        <source src="assets/css/images/run.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Background image with zoom effect (hidden initially) -->
+    <div id="zoomImageContainer">
+        <img src="assets/css/images/bmi.jpeg" alt="BMI Image" id="zoomImage">
+    </div>
+
+    <!-- Centered, draggable, and transparent form -->
+    <div class="container">
+        <div class="form-wrapper" id="draggableForm">
+            <h3>Calculate your BMI</h3>
+            <form onsubmit="handleForm(event)">
+                <p>Height in centimeters</p>
+                <input type="number" min="0" name="height" required>
+
+                <p>Weight in kilograms</p>
+                <input type="number" min="0" name="weight" required>
+                
+                <p id="result"></p>
+                <button type="submit" id="submitButton">Calculate</button>
+            </form>
+            <h2>BMI advice</h2>
+            <p>Lower than 18.5: Too low</p>
+            <p>Between 18.5 and 25 : Healthy weight</p>
+            <p>Higher than 25: Too high</p>
+        </div>
+    </div>
+
+    <audio autoplay loop id="backgroundMusic">
+        <source src="assets/css/images/audio.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
