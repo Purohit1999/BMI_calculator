@@ -8,8 +8,12 @@ function handleForm(event) {
     let bmi = calculateBMI(height, weight);
 
     let result = document.getElementById("result");
-    result.innerText = "Your BMI is " + bmi.toFixed(2);
-    result.style.color = "blue";
+    if (result) { // Ensure the result element exists
+        result.innerText = "Your BMI is " + bmi.toFixed(2);
+        result.style.color = "blue";
+    } else {
+        console.error("Element with ID 'result' not found.");
+    }
 }
 
 // Calculate BMI and return the result
@@ -19,12 +23,11 @@ function calculateBMI(height, weight) {
 }
 
 // Make the form draggable, except when clicking inside inputs
-dragElement(document.getElementById("draggableForm"));
+dragElement(document.getElementById("content-wrapper")); // Ensure ID matches in HTML
 
 function dragElement(element) {
     let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
 
-    // Set up drag start outside input elements only
     element.addEventListener("mousedown", function(e) {
         if (e.target.tagName === "INPUT" || e.target.tagName === "BUTTON") {
             return; // Do nothing if clicking inside input or button
@@ -79,5 +82,5 @@ backgroundVideo.onended = function() {
     zoomImageContainer.style.display = 'block';
 };
 
-    // Apply zoom effect to image
-    zoomImageContainer.classList.add("zoom-effect");
+// Apply zoom effect to the image
+zoomImageContainer.classList.add("zoom-effect");
