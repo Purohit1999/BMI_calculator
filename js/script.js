@@ -30,7 +30,16 @@ document.addEventListener("DOMContentLoaded", function() {
     const video3 = document.getElementById('video3');
     const imageContainer3 = document.getElementById('imageContainer3');
     const backgroundMusic = document.getElementById('backgroundMusic');
-
+    const contentWrapper = document.getElementById('content-wrapper'); // Form container for dragging
+   
+    // Make the form draggable
+    if (contentWrapper) {
+        dragElement(contentWrapper);
+    } else {
+        console.error("Element with ID 'content-wrapper' not found.");
+    }
+   
+   
     // Set up background music if available
     if (backgroundMusic) {
         backgroundMusic.loop = true;
@@ -53,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 imageContainer1.style.display = 'none';
                 video2.style.display = 'block';
                 video2.play();
-            }, 5000);
+            }, 3000);
         };
 
         video2.playbackRate = 0.5;
