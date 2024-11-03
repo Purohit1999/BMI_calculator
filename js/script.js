@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 imageContainer1.style.display = 'none';
                 video2.style.display = 'block';
                 video2.play();
-            }, 3000);
+            }, 5000);
         };
 
         video2.playbackRate = 0.5;
