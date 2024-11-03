@@ -105,7 +105,7 @@ function dragElement(element) {
 
         document.addEventListener("mousemove", elementDrag);
         document.addEventListener("mouseup", closeDragElement);
-    }
+    });
 
     function elementDrag(e) {
         e.preventDefault();
