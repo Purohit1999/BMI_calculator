@@ -22,7 +22,7 @@ function calculateBMI(height, weight) {
     return weight / (heightInMeters * heightInMeters);
 }
 
-// Make the form draggable, except when clicking inside inputs
+// Ensure DOM is fully loaded before accessing elements
 document.addEventListener("DOMContentLoaded", function() {
     const contentWrapper = document.getElementById("content-wrapper");
     if (contentWrapper) {
@@ -33,6 +33,12 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function dragElement(element) {
+    // Check if element is valid before proceeding
+    if (!element) {
+        console.error("Drag element is null.");
+        return;
+    }
+    
     let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
 
     element.addEventListener("mousedown", function(e) {
