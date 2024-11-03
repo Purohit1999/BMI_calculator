@@ -77,6 +77,7 @@ document.addEventListener("DOMContentLoaded", function() {
         console.error("One or more video/image elements not found.");
     }
 });
+
 function dragElement(element) {
     if (!element) {
         console.error("Drag element is null.");
