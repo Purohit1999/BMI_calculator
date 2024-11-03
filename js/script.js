@@ -30,15 +30,47 @@ document.addEventListener("DOMContentLoaded", function() {
     } else {
         console.error("Element with ID 'content-wrapper' not found.");
     }
+
+    // Play video slowly, then switch to image with zoom effect
+    const backgroundVideo = document.getElementById('backgroundVideo');
+    const zoomImageContainer = document.getElementById('zoomImageContainer');
+    const backgroundMusic = document.getElementById('backgroundMusic');
+
+    // Ensure elements exist before accessing properties
+    if (backgroundVideo && zoomImageContainer && backgroundMusic) {
+        // Set video playback rate
+        backgroundVideo.playbackRate = 0.5;
+        backgroundMusic.loop = true; // Enable looping
+        backgroundMusic.volume = 0.5; // Set medium volume
+
+        // Function to start background music after user interaction
+        function startBackgroundMusic() {
+            backgroundMusic.play().catch(error => {
+                console.log("Music play error:", error);
+            });
+            document.removeEventListener('click', startBackgroundMusic);
+        }
+
+        // Add event listener to start music on user interaction
+        document.addEventListener('click', startBackgroundMusic);
+
+        // When video ends, hide it and show image with zoom effect
+        backgroundVideo.onended = function() {
+            backgroundVideo.style.display = 'none';
+            zoomImageContainer.style.display = 'block';
+            zoomImageContainer.classList.add("zoom-effect");
+        };
+    } else {
+        console.error("One or more elements for video/music not found.");
+    }
 });
 
 function dragElement(element) {
-    // Check if element is valid before proceeding
     if (!element) {
         console.error("Drag element is null.");
         return;
     }
-    
+
     let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
 
     element.addEventListener("mousedown", function(e) {
@@ -66,37 +98,4 @@ function dragElement(element) {
         document.onmouseup = null;
         document.onmousemove = null;
     }
-}
-
-// Play video slowly, then switch to image with zoom effect
-const backgroundVideo = document.getElementById('backgroundVideo');
-const zoomImageContainer = document.getElementById('zoomImageContainer');
-const backgroundMusic = document.getElementById('backgroundMusic');
-
-// Ensure elements exist before accessing properties
-if (backgroundVideo && zoomImageContainer && backgroundMusic) {
-    // Set video playback rate
-    backgroundVideo.playbackRate = 0.5;
-    backgroundMusic.loop = true; // Enable looping
-    backgroundMusic.volume = 0.5; // Set medium volume
-
-    // Function to start background music after user interaction
-    function startBackgroundMusic() {
-        backgroundMusic.play().catch(error => {
-            console.log("Music play error:", error);
-        });
-        document.removeEventListener('click', startBackgroundMusic);
-    }
-
-    // Add event listener to start music on user interaction
-    document.addEventListener('click', startBackgroundMusic);
-
-    // When video ends, hide it and show image with zoom effect
-    backgroundVideo.onended = function() {
-        backgroundVideo.style.display = 'none';
-        zoomImageContainer.style.display = 'block';
-        zoomImageContainer.classList.add("zoom-effect");
-    };
-} else {
-    console.error("One or more elements for video/music not found.");
 }
