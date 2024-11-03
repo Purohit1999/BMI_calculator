@@ -56,6 +56,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // When video ends, hide it and show image with zoom effect
         backgroundVideo.onended = function() {
+            console.log("Video ended. Displaying zoom image."); // Debugging log
             backgroundVideo.style.display = 'none';
             zoomImageContainer.style.display = 'block';
             zoomImageContainer.classList.add("zoom-effect");
