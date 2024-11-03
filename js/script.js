@@ -1,13 +1,17 @@
 // Handle form submission and display the BMI result to the user
 function handleForm(event) {
     event.preventDefault();
-    let form = event.target;
-    let height = form.height.value;
-    let weight = form.weight.value;
+    const form = event.target;
+    const height = parseFloat(form.height.value);
+    const weight = parseFloat(form.weight.value);
 
-    let bmi = calculateBMI(height, weight);
+    if (isNaN(height) || isNaN(weight)) {
+        alert("Please enter valid numbers for height and weight.");
+        return;
+    }
 
-    let result = document.getElementById("result");
+    const bmi = calculateBMI(height, weight);
+    const result = document.getElementById("result");
     if (result) { // Ensure the result element exists
         result.innerText = "Your BMI is " + bmi.toFixed(2);
         result.style.color = "blue";
@@ -18,8 +22,61 @@ function handleForm(event) {
 
 // Calculate BMI and return the result
 function calculateBMI(height, weight) {
-    let heightInMeters = height / 100;
+    const heightInMeters = height / 100;
     return weight / (heightInMeters * heightInMeters);
+}
+
+// Function to make the form draggable
+function dragElement(element) {
+    let startX = 0, startY = 0, initialX = 0, initialY = 0;
+
+    element.addEventListener("mousedown", function(e) {
+        // Ignore dragging if the target is an input, textarea, or button
+        if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA" || e.target.tagName === "BUTTON") {
+            return; // Allow interaction with form elements
+        }
+
+        e.preventDefault();
+        startX = e.clientX;
+        startY = e.clientY;
+
+        const rect = element.getBoundingClientRect();
+        initialX = rect.left;
+        initialY = rect.top;
+
+        document.addEventListener("mousemove", elementDrag);
+        document.addEventListener("mouseup", closeDragElement);
+    });
+
+    function elementDrag(e) {
+        e.preventDefault();
+
+        // Calculate new position
+        const deltaX = e.clientX - startX;
+        const deltaY = e.clientY - startY;
+
+        let newX = initialX + deltaX;
+        let newY = initialY + deltaY;
+
+        // Keep the form within the viewport boundaries
+        const viewportWidth = window.innerWidth;
+        const viewportHeight = window.innerHeight;
+        const elementWidth = element.offsetWidth;
+        const elementHeight = element.offsetHeight;
+
+        newX = Math.max(0, Math.min(newX, viewportWidth - elementWidth));
+        newY = Math.max(0, Math.min(newY, viewportHeight - elementHeight));
+
+        // Apply the new position
+        element.style.position = "absolute";
+        element.style.left = newX + "px";
+        element.style.top = newY + "px";
+    }
+
+    function closeDragElement() {
+        document.removeEventListener("mousemove", elementDrag);
+        document.removeEventListener("mouseup", closeDragElement);
+    }
 }
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -61,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 imageContainer1.style.display = 'none';
                 video2.style.display = 'block';
                 video2.play();
-            }, 3000);
+            }, 3000); // Delay before the next video starts
         };
 
         video2.playbackRate = 0.5;
@@ -73,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 imageContainer2.style.display = 'none';
                 video3.style.display = 'block';
                 video3.play();
-            }, 3000);
+            }, 3000); // Delay before the next video starts
         };
 
         video3.playbackRate = 0.5;
@@ -85,55 +142,3 @@ document.addEventListener("DOMContentLoaded", function() {
         console.error("One or more video/image elements not found.");
     }
 });
-
-function dragElement(element) {
-    let startX = 0, startY = 0, initialX = 0, initialY = 0;
-
-    element.addEventListener("mousedown", function(e) {
-        // Check if the target is an input, textarea, or button
-        if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA" || e.target.tagName === "BUTTON") {
-            return; // Allow interaction with form elements
-        }
-        
-        e.preventDefault();
-        startX = e.clientX;
-        startY = e.clientY;
-
-        const rect = element.getBoundingClientRect();
-        initialX = rect.left;
-        initialY = rect.top;
-
-        document.addEventListener("mousemove", elementDrag);
-        document.addEventListener("mouseup", closeDragElement);
-    });
-
-    function elementDrag(e) {
-        e.preventDefault();
-        
-        // Calculate new position
-        const deltaX = e.clientX - startX;
-        const deltaY = e.clientY - startY;
-        
-        let newX = initialX + deltaX;
-        let newY = initialY + deltaY;
-
-        // Keep the form within the viewport boundaries
-        const viewportWidth = window.innerWidth;
-        const viewportHeight = window.innerHeight;
-        const elementWidth = element.offsetWidth;
-        const elementHeight = element.offsetHeight;
-
-        newX = Math.max(0, Math.min(newX, viewportWidth - elementWidth));
-        newY = Math.max(0, Math.min(newY, viewportHeight - elementHeight));
-
-        // Apply the new position
-        element.style.position = "absolute";
-        element.style.left = newX + "px";
-        element.style.top = newY + "px";
-    }
-
-    function closeDragElement() {
-        document.removeEventListener("mouseup", closeDragElement);
-        document.removeEventListener("mousemove", elementDrag);
-    }
-}
