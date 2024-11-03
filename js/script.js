@@ -31,15 +31,14 @@ document.addEventListener("DOMContentLoaded", function() {
     const imageContainer3 = document.getElementById('imageContainer3');
     const backgroundMusic = document.getElementById('backgroundMusic');
     const contentWrapper = document.getElementById('content-wrapper'); // Form container for dragging
-   
+
     // Make the form draggable
     if (contentWrapper) {
         dragElement(contentWrapper);
     } else {
         console.error("Element with ID 'content-wrapper' not found.");
     }
-   
-   
+
     // Set up background music if available
     if (backgroundMusic) {
         backgroundMusic.loop = true;
@@ -74,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 imageContainer2.style.display = 'none';
                 video3.style.display = 'block';
                 video3.play();
-            }, 5000);
+            }, 3000);
         };
 
         video3.playbackRate = 0.5;
@@ -88,36 +87,50 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function dragElement(element) {
-    if (!element) {
-        console.error("Drag element is null.");
-        return;
-    }
+    let startX = 0, startY = 0, initialX = 0, initialY = 0;
 
-    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    element.addEventListener("mousedown", dragMouseDown);
 
-    element.addEventListener("mousedown", function(e) {
-        if (e.target.tagName === "INPUT" || e.target.tagName === "BUTTON") {
-            return; // Do nothing if clicking inside input or button
-        }
+    function dragMouseDown(e) {
         e.preventDefault();
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        document.onmouseup = closeDragElement;
-        document.onmousemove = elementDrag;
-    });
+        startX = e.clientX;
+        startY = e.clientY;
+
+        const rect = element.getBoundingClientRect();
+        initialX = rect.left;
+        initialY = rect.top;
+
+        document.addEventListener("mousemove", elementDrag);
+        document.addEventListener("mouseup", closeDragElement);
+    }
 
     function elementDrag(e) {
         e.preventDefault();
-        pos1 = pos3 - e.clientX;
-        pos2 = pos4 - e.clientY;
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        element.style.top = (element.offsetTop - pos2) + "px";
-        element.style.left = (element.offsetLeft - pos1) + "px";
+        
+        // Calculate new position
+        const deltaX = e.clientX - startX;
+        const deltaY = e.clientY - startY;
+        
+        let newX = initialX + deltaX;
+        let newY = initialY + deltaY;
+
+        // Keep the form within the viewport boundaries
+        const viewportWidth = window.innerWidth;
+        const viewportHeight = window.innerHeight;
+        const elementWidth = element.offsetWidth;
+        const elementHeight = element.offsetHeight;
+
+        newX = Math.max(0, Math.min(newX, viewportWidth - elementWidth));
+        newY = Math.max(0, Math.min(newY, viewportHeight - elementHeight));
+
+        // Apply the new position
+        element.style.position = "absolute";
+        element.style.left = newX + "px";
+        element.style.top = newY + "px";
     }
 
     function closeDragElement() {
-        document.onmouseup = null;
-        document.onmousemove = null;
+        document.removeEventListener("mouseup", closeDragElement);
+        document.removeEventListener("mousemove", elementDrag);
     }
 }
