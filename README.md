@@ -1,8 +1,8 @@
 # 🏋️ BMI Calculator
 
-![Responsive Design](assets/images/responsive.png)
+![Responsive Design](assets/css/images/responsive.png)
 
-🌐 Website Link: [BMI Calculator](https://your-username.github.io/bmi-calculator)
+🌐 Website Link: [BMI Calculator](https://purohit1999.github.io/BMI_calculator/)
 
 Welcome to the BMI Calculator project! This repository contains the source code and documentation for an interactive BMI calculator. This README provides an overview of the project, including its features, technologies used, testing, deployment, and more.
 
@@ -131,7 +131,7 @@ The project was deployed using GitHub Pages:
 1. Go to the repository's Settings.
 2. Enable GitHub Pages under the "Pages" section.
 3. Choose the branch (usually `main`) and save.
-4. The page is live at: [BMI Calculator](https://your-username.github.io/bmi-calculator)
+4. The page is live at: [BMI Calculator](https://purohit1999.github.io/BMI_calculator/)
 
 ## 🙏 Credit
 
