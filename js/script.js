@@ -89,9 +89,12 @@ document.addEventListener("DOMContentLoaded", function() {
 function dragElement(element) {
     let startX = 0, startY = 0, initialX = 0, initialY = 0;
 
-    element.addEventListener("mousedown", dragMouseDown);
-
-    function dragMouseDown(e) {
+    element.addEventListener("mousedown", function(e) {
+        // Check if the target is an input, textarea, or button
+        if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA" || e.target.tagName === "BUTTON") {
+            return; // Allow interaction with form elements
+        }
+        
         e.preventDefault();
         startX = e.clientX;
         startY = e.clientY;
