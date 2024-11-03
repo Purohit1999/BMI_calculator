@@ -9,38 +9,31 @@
 </head>
 <body>
    <!-- Background Video and Image Sequence -->
-   <video id="video1" autoplay muted src="assets/css/images/run.mp4"></video>
-   <div id="imageContainer1" style="display: none;">
+   <video id="video1" class="video-container" autoplay muted src="assets/css/images/run.mp4"></video>
+   <div id="imageContainer1" class="image-container">
        <img id="image1" src="assets/css/images/bmi.jpeg" alt="Background Image 1">
    </div>
 
-   <video id="video2" style="display: none;" autoplay muted src="assets/css/images/run3.mp4"></video>
-   <div id="imageContainer2" style="display: none;">
+   <video id="video2" class="video-container" autoplay muted src="assets/css/images/run3.mp4"></video>
+   <div id="imageContainer2" class="image-container">
        <img id="image2" src="assets/css/images/run1.jpeg" alt="Background Image 2">
    </div>
 
-   <video id="video3" style="display: none;" autoplay muted src="assets/css/images/run4.mp4"></video>
-   <div id="imageContainer3" style="display: none;">
+   <video id="video3" class="video-container" autoplay muted src="assets/css/images/run4.mp4"></video>
+   <div id="imageContainer3" class="image-container">
        <img id="image3" src="assets/css/images/run2.jpeg" alt="Background Image 3">
-   </div>
-
-    <!-- Centered, draggable, and transparent form -->
-    <div class="container">
+   <!-- Centered, draggable, and transparent form -->
+   <div class="container">
         <div class="form-wrapper" id="content-wrapper">
             <h3>Calculate your BMI</h3>
             <form id="bmiForm" onsubmit="handleForm(event)">
-                <!-- Label for Height -->
                 <label for="height">Height in centimeters</label>
                 <input type="number" id="height" name="height" min="0" required>
 
-                <!-- Label for Weight -->
                 <label for="weight">Weight in kilograms</label>
                 <input type="number" id="weight" name="weight" min="0" required>
                 
-                <!-- Result Display -->
                 <p id="result"></p>
-                
-                <!-- Submit Button -->
                 <button type="submit" id="submitButton">Calculate</button>
             </form>
             <h2>BMI advice</h2>
@@ -53,6 +46,6 @@
    <!-- Background Music -->
    <audio id="backgroundMusic" src="assets/css/images/audio.mp3" autoplay loop></audio>
 
-    <script src="js/script.js"></script>
+   <script src="js/script.js"></script>
 </body>
 </html>

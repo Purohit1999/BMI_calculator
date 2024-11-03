@@ -1,4 +1,4 @@
-/* Fullscreen background videos with slowed speed */
+/* Fullscreen background videos */
 .video-container {
     position: fixed;
     top: 0;
@@ -10,12 +10,9 @@
     display: none; /* Hide initially */
 }
 
-/* Show only the first video initially */
+/* Display only the first video initially */
 #video1 {
-    display: block; /* Show the first video by default */
-}
-#video2, #video3 {
-    display: none;
+    display: block;
 }
 
 /* Background image containers for zoom effect */
@@ -26,11 +23,11 @@
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1; /* Place above the video but behind form */
+    z-index: -1; /* Place above video but behind form */
     overflow: hidden;
 }
 
-#image1, #image2, #image3 {
+.image-container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -47,15 +44,15 @@
     }
 }
 
-/* Draggable and centered form container */
+/* Centered form container */
 .container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     position: relative;
-    z-index: 1; /* Place above both video and background images */
-    margin: 0; /* Remove any default margin to center properly */
+    z-index: 1; /* Place above video and image background */
+    pointer-events: none; /* Allow clicks on form only, not on background */
 }
 
 .form-wrapper {
@@ -63,21 +60,9 @@
     padding: 20px;
     background: rgba(255, 255, 255, 0.9);
     border-radius: 8px;
-    cursor: move; /* Indicates that the form is draggable */
-    position: relative; /* Relative positioning to ensure proper layering */
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-/* Make form container larger and semi-transparent */
-#content-wrapper {
-    background-color: rgba(255, 255, 255, 0.85); /* Adjust transparency */
-    width: 350px; /* Increase form width */
-    padding: 30px; /* Increase padding */
-    border-radius: 10px; /* Add rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add subtle shadow for depth */
-    text-align: center;
-    cursor: move; /* Indicates draggable */
+    pointer-events: auto; /* Allow clicks within form */
 }
 
 /* Button styling */
@@ -90,19 +75,7 @@ button {
     font-weight: bold;
     border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s ease; /* Add hover effect */
-}
-
-button#submitButton {
-    font-size: 1.1em;
-    padding: 12px 20px; /* Increase padding for button */
-    background-color: teal;
-    color: white;
-    font-weight: bold;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease; /* Add hover effect */
+    transition: background-color 0.3s ease;
 }
 
 button#submitButton:hover {
@@ -111,14 +84,13 @@ button#submitButton:hover {
 
 /* Adjust heading and paragraph font sizes */
 h3, h2 {
-    font-size: 1.5em; /* Make headings larger */
+    font-size: 1.5em;
 }
 
 p, #result {
-    font-size: 1.2em; /* Increase font size for advice and result */
+    font-size: 1.2em;
 }
 
-/* Style for input fields and button */
 input[type="number"] {
     height: 30px;
     width: 100%;
@@ -129,22 +101,9 @@ input[type="number"] {
     border-radius: 5px;
 }
 
-/* Adjust overlay text for better visibility */
-.overlay p {
-    font-size: 1.5em; /* Make overlay text larger */
-    font-weight: bold;
-    color: white;
-}
-
 /* Result styling */
 #result {
     text-align: center;
     font-weight: bold;
     color: blue;
-}
-
-/* Additional styling for hover effect on buttons */
-button:hover {
-    background-color: #008080;
-    transition: 0.3s;
 }
