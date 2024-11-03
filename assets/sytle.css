@@ -10,7 +10,7 @@
     display: none; /* Hide initially */
 }
 
-/* Set display for each video initially (only first video visible) */
+/* Show only the first video initially */
 #video1 {
     display: block; /* Show the first video by default */
 }
@@ -55,6 +55,7 @@
     height: 100vh;
     position: relative;
     z-index: 1; /* Place above both video and background images */
+    margin: 0; /* Remove any default margin to center properly */
 }
 
 .form-wrapper {
@@ -63,17 +64,13 @@
     background: rgba(255, 255, 255, 0.9);
     border-radius: 8px;
     cursor: move; /* Indicates that the form is draggable */
-    position: absolute; /* For flexibility in movement */
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: relative; /* Relative positioning to ensure proper layering */
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 /* Make form container larger and semi-transparent */
 #content-wrapper {
-    position: absolute; /* Required for dragging functionality */
     background-color: rgba(255, 255, 255, 0.85); /* Adjust transparency */
     width: 350px; /* Increase form width */
     padding: 30px; /* Increase padding */
