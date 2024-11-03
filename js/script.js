@@ -1,3 +1,27 @@
+// Handle form submission and display the BMI result to the user
+function handleForm(event) {
+    event.preventDefault();
+    let form = event.target;
+    let height = form.height.value;
+    let weight = form.weight.value;
+
+    let bmi = calculateBMI(height, weight);
+
+    let result = document.getElementById("result");
+    if (result) { // Ensure the result element exists
+        result.innerText = "Your BMI is " + bmi.toFixed(2);
+        result.style.color = "blue";
+    } else {
+        console.error("Element with ID 'result' not found.");
+    }
+}
+
+// Calculate BMI and return the result
+function calculateBMI(height, weight) {
+    let heightInMeters = height / 100;
+    return weight / (heightInMeters * heightInMeters);
+}
+
 document.addEventListener("DOMContentLoaded", function() {
     const video1 = document.getElementById('video1');
     const imageContainer1 = document.getElementById('imageContainer1');
